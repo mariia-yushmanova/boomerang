@@ -3,17 +3,32 @@
 class Enemy {
   constructor() {
     this.generateSkin();
-    this.position = 2;
+    this.position = 30;
   }
 
   generateSkin() {
-    const skins = ['👾', '💀', '👹', '👻', '👽', '👿', '💩', '🤡', '🤺', '🧛', '🧟', '🎃'];
+    const skins = [
+      '👾',
+      '💀',
+      '👹',
+      '👻',
+      '👽',
+      '👿',
+      '💩',
+      '🤡',
+      '🤺',
+      '🧛',
+      '🧟',
+      '🎃',
+    ];
     this.skin = skins[Math.floor(Math.random() * skins.length)];
   }
 
   moveLeft() {
     // Идём влево.
-    this.position -= 1;
+    setInterval(() => {
+      this.position -= 1;
+    }, 300);
   }
 
   die() {
