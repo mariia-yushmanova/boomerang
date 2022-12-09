@@ -5,7 +5,7 @@ class View {
     // Тут всё рисуем.
     console.clear();
     console.log(hero.health);
-    console.log(`Твой счет : ${hero.scores}`);
+    console.log(`Твой счет : ${hero.score}`);
     if (process.argv[2]) {
       console.log(`Имя игрока: ${process.argv[2]}`);
     }
@@ -13,7 +13,7 @@ class View {
     console.log(track.join(' '));
     console.log('\n');
     if (hero.livesCount === 0) {
-      console.log(`Твой результат: ${hero.scores}`);
+      console.log(`Твой результат: ${hero.score}`);
     }
     console.log('\n');
     console.log(`Created by ${yourTeamName} with love`);
