@@ -1,14 +1,17 @@
 // Бумеранг является оружием.
 // В дальнейшем можно добавить другое оружие.
 // Тогда можно будет создать класс Weapon и воспользоваться наследованием!
+const Hero = require('./Hero');
 
 class Boomerang {
   constructor() {
-    this.skin = '🌀';
-    this.position = 0;
+    this.skin = ':бумеранг:';
+    this.position = undefined;
+    this.direction = 'rigth';
   }
 
   fly() {
+    this.position = Hero.position + 1;
     this.moveRight();
     this.moveLeft();
   }
