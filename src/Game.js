@@ -8,8 +8,16 @@ const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const runInteractiveConsole = require('./keyboard');
 
-// Основной класс игры.
-// Тут будут все настройки, проверки, запуск.
+const { Sequelize, sequelize, boomerang: score } = require('../db/models');
+
+(async () => {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
+})();
 
 class Game {
   constructor({ trackLength }) {
@@ -22,9 +30,21 @@ class Game {
     this.regenerateTrack();
   }
 
-  // подлючение базы имя + очки
-  // async name() {
-  // }
+  async name() {
+    const res = await score.findOrCreate({
+      where: { name: `${process.argv[2]}` },
+      defaults: { score: this.hero.score },
+    });
+    return res;
+  }
+
+  async update() {
+    const result = await score.update(
+      { score: this.hero.score }, // attribute
+      { where: { name: `${process.argv[2]}` } } // condition
+    );
+    return result;
+  }
 
   regenerateTrack() {
     // Сборка всего необходимого (герой, враг(и), оружие)
