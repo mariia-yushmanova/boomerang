@@ -1,14 +1,22 @@
 // Наш герой.
 
 class Hero {
-  constructor({ position }) {
-    this.skin = '🤠'; // можете использовать любые emoji '💃'
+  constructor({ position, boomerang }) {
+    this.skin = '🦉'; // можете использовать любые emoji '💃'
     this.position = position;
+    this.boomerang = boomerang;
+    this.health = 'Твои жизни: 💜💜💜';
+    this.livesCount = 3;
+    this.score = 0;
+    this.record = 0;
   }
 
   moveLeft() {
     // Идём влево.
     this.position -= 1;
+    if (this.position <= 2) {
+      this.position = 1;
+    }
   }
 
   moveRight() {
@@ -22,7 +30,9 @@ class Hero {
   }
 
   die() {
-    this.skin = '💀';
+    if (this.health === 0) {
+      this.skin = '💀';
+    }
     console.log('YOU ARE DEAD!💀');
     process.exit();
   }
