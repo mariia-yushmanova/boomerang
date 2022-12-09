@@ -5,7 +5,7 @@ const Hero = require('./Hero');
 
 class Boomerang {
   constructor() {
-    this.skin = ':бумеранг:';
+    this.skin = '🪃';
     this.position = undefined;
     this.direction = 'rigth';
   }
