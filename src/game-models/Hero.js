@@ -33,8 +33,6 @@ class Hero {
     if (this.health === 0) {
       this.skin = '💀';
     }
-    console.log('YOU ARE DEAD!💀');
-
     // process.exit();
   }
 }
