@@ -42,7 +42,7 @@ class Game {
   async update() {
     const result = await db.scores.update(
       { score: this.hero.score }, // attribute
-      { where: { name: `${process.argv[2]}` } } // condition
+      { where: { name: `${process.argv[2]}` } }, // condition
     );
     return result;
   }
@@ -57,7 +57,9 @@ class Game {
   }
 
   async check() {
-    if (this.hero.position === this.enemy.position) {
+    if (this.hero.position === this.enemy.position
+      || this.hero.position === this.enemy.position + 1
+      || this.hero.position === this.enemy.position - 1) {
       this.hero.die();
       this.regenerateTrack();
       this.hero.position = 0;
@@ -77,6 +79,7 @@ class Game {
         // setTimeout(() => {
         this.hero.die();
         await this.name();
+        console.log('YOU ARE DEAD!💀');
         process.exit();
         // });
       }
@@ -97,14 +100,14 @@ class Game {
       // this.boomerang = new Boomerang();
     }
     if (
-      this.boomerang.position !== this.hero.position &&
-      this.boomerang.direction === 'right'
+      this.boomerang.position !== this.hero.position
+      && this.boomerang.direction === 'right'
     ) {
       this.boomerang.moveRight();
     }
     if (
-      this.boomerang.position !== this.hero.position &&
-      this.boomerang.direction === 'left'
+      this.boomerang.position !== this.hero.position
+      && this.boomerang.direction === 'left'
     ) {
       this.boomerang.moveLeft();
     }
