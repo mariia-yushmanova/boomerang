@@ -57,7 +57,11 @@ class Game {
   }
 
   async check() {
-    if (this.hero.position === this.enemy.position) {
+    if (
+      this.hero.position === this.enemy.position ||
+      this.hero.position === this.enemy.position + 1 ||
+      this.hero.position === this.enemy.position - 1
+    ) {
       this.hero.die();
       this.regenerateTrack();
       this.hero.position = 0;
@@ -77,6 +81,7 @@ class Game {
         // setTimeout(() => {
         this.hero.die();
         await this.name();
+        console.log('YOU ARE DEAD!💀');
         process.exit();
         // });
       }
