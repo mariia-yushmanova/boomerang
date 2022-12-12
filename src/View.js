@@ -1,5 +1,6 @@
 // Сделаем отдельный класс для отображения игры в консоли.
 const c = require('ansi-colors');
+
 class View {
   render(track, hero) {
     const yourTeamName = 'Owls';
