@@ -7,6 +7,7 @@ const Enemy = require('./game-models/Enemy');
 const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const runInteractiveConsole = require('./keyboard');
+const c = require('ansi-colors');
 
 const { Sequelize, sequelize, scores } = require('../db/models');
 const db = require('../db/models');
@@ -67,11 +68,11 @@ class Game {
       this.hero.position = 0;
       this.hero.livesCount -= 1;
       if (this.hero.livesCount === 2) {
-        this.hero.health = 'Жизни: 💜💜🖤';
+        this.hero.health = 'Жизни: 💙💙🖤';
         this.enemy.position = 29;
       }
       if (this.hero.livesCount === 1) {
-        this.hero.health = 'Жизни: 💜🖤🖤';
+        this.hero.health = 'Жизни: 💙🖤🖤';
         this.enemy.position = 29;
       }
       if (this.hero.livesCount === 0) {
@@ -81,7 +82,7 @@ class Game {
         // setTimeout(() => {
         this.hero.die();
         await this.name();
-        console.log('YOU ARE DEAD!💀');
+        console.log(c.bgRedBright('\nYOU ARE DEAD!💀\n'));
         process.exit();
         // });
       }

@@ -11,20 +11,19 @@ class View {
       console.log(`Имя игрока: ${process.argv[2]}`);
     }
     console.log(
-      c.bold.green('                         Owls 2022                       ')
+      c.bold.blue('                         Owls 2022                       ')
     );
-    console.log('🔥'.repeat(track.length));
+    console.log('🌊'.repeat(track.length));
     console.log('\n');
     console.log(track.join(' '));
     console.log('\n');
-    console.log('🔥'.repeat(track.length));
+    console.log('🌊'.repeat(track.length));
 
     if (hero.livesCount === 0) {
       console.clear();
-      console.log(c.bold.red(`Твой результат: ${hero.score}`));
+      console.log(c.bgWhiteBright(`Твой результат: ${hero.score}\n`));
     }
-    console.log('\n');
-    console.log(c.bold.yellow(`Created by ${yourTeamName} with love`));
+    console.log(c.bgBlueBright('Сделано с любовью ❤️'));
   }
 }
 module.exports = View;
