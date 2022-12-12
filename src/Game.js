@@ -8,6 +8,7 @@ const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const runInteractiveConsole = require('./keyboard');
 const c = require('ansi-colors');
+const sound = require('play-sound')((opts = {}));
 
 const { Sequelize, sequelize, scores } = require('../db/models');
 const db = require('../db/models');
@@ -83,6 +84,9 @@ class Game {
         this.hero.die();
         await this.name();
         console.log(c.bgRedBright('\nYOU ARE DEAD!💀\n'));
+        sound.play(
+          '/Users/mariia/Desktop/phase-1/week3/core-async-boomerang/src/sounds/fail-wha-wha-version.mp3'
+        );
         process.exit();
         // });
       }
@@ -118,6 +122,9 @@ class Game {
 
   play() {
     runInteractiveConsole(this.hero, this.boomerang);
+    sound.play(
+      '/Users/mariia/Desktop/phase-1/week3/core-async-boomerang/src/sounds/super-mario-saundtrek.mp3'
+    );
     setInterval(() => {
       // Let's play!
       this.check();
