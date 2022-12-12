@@ -5,7 +5,7 @@ class Hero {
     this.skin = '🦉'; // можете использовать любые emoji '💃'
     this.position = position;
     this.boomerang = boomerang;
-    this.health = 'Твои жизни: 💜💜💜';
+    this.health = 'Твои жизни: 💙💙💙';
     this.livesCount = 3;
     this.score = 0;
     this.record = 0;
@@ -33,8 +33,6 @@ class Hero {
     if (this.health === 0) {
       this.skin = '💀';
     }
-    console.log('YOU ARE DEAD!💀');
-
     // process.exit();
   }
 }
