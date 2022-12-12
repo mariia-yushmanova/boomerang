@@ -7,18 +7,19 @@ const Enemy = require('./game-models/Enemy');
 const Boomerang = require('./game-models/Boomerang');
 const View = require('./View');
 const runInteractiveConsole = require('./keyboard');
+const c = require('ansi-colors');
 
 const { Sequelize, sequelize, scores } = require('../db/models');
 const db = require('../db/models');
 
-(async () => {
-  try {
-    await db.sequelize.authenticate();
-    console.log('Connection has been established successfully.');
-  } catch (error) {
-    console.error('Unable to connect to the database:', error);
-  }
-})();
+// (async () => {
+//   try {
+//     await db.sequelize.authenticate();
+//     console.log("Connection has been established successfully.");
+//   } catch (error) {
+//     console.error("Unable to connect to the database:", error);
+//   }
+// })();
 
 class Game {
   constructor({ trackLength }) {
@@ -42,7 +43,7 @@ class Game {
   async update() {
     const result = await db.scores.update(
       { score: this.hero.score }, // attribute
-      { where: { name: `${process.argv[2]}` } }, // condition
+      { where: { name: `${process.argv[2]}` } } // condition
     );
     return result;
   }
@@ -57,19 +58,21 @@ class Game {
   }
 
   async check() {
-    if (this.hero.position === this.enemy.position
-      || this.hero.position === this.enemy.position + 1
-      || this.hero.position === this.enemy.position - 1) {
+    if (
+      this.hero.position === this.enemy.position ||
+      this.hero.position === this.enemy.position + 1 ||
+      this.hero.position === this.enemy.position - 1
+    ) {
       this.hero.die();
       this.regenerateTrack();
       this.hero.position = 0;
       this.hero.livesCount -= 1;
       if (this.hero.livesCount === 2) {
-        this.hero.health = 'Жизни: 💜💜🖤';
+        this.hero.health = 'Жизни: 💙💙🖤';
         this.enemy.position = 29;
       }
       if (this.hero.livesCount === 1) {
-        this.hero.health = 'Жизни: 💜🖤🖤';
+        this.hero.health = 'Жизни: 💙🖤🖤';
         this.enemy.position = 29;
       }
       if (this.hero.livesCount === 0) {
@@ -79,7 +82,7 @@ class Game {
         // setTimeout(() => {
         this.hero.die();
         await this.name();
-        console.log('YOU ARE DEAD!💀');
+        console.log(c.bgRedBright('\nYOU ARE DEAD!💀\n'));
         process.exit();
         // });
       }
@@ -100,14 +103,14 @@ class Game {
       // this.boomerang = new Boomerang();
     }
     if (
-      this.boomerang.position !== this.hero.position
-      && this.boomerang.direction === 'right'
+      this.boomerang.position !== this.hero.position &&
+      this.boomerang.direction === 'right'
     ) {
       this.boomerang.moveRight();
     }
     if (
-      this.boomerang.position !== this.hero.position
-      && this.boomerang.direction === 'left'
+      this.boomerang.position !== this.hero.position &&
+      this.boomerang.direction === 'left'
     ) {
       this.boomerang.moveLeft();
     }

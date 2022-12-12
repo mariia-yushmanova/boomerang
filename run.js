@@ -15,7 +15,7 @@ game.play();
 // async function connectCheck() {
 //   try {
 //     await db.sequelize.authenticate();
-//     console.log("База успешно подключена!");
+//     console.log('База успешно подключена!');
 //   } catch (error) {
 //     console.log(error.message);
 //   }
