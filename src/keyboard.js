@@ -4,6 +4,8 @@
 const keypress = require('keypress');
 const Boomerang = require('./game-models/Boomerang');
 const Hero = require('./game-models/Hero');
+const sound = require('play-sound')((opts = {}));
+
 // Управление.
 // Настроим соответствия нажатий на клавиши и действий в игре.
 // Какая-то функция.
@@ -13,6 +15,9 @@ function runInteractiveConsole(Hero, Boomerang) {
     d: () => Hero.moveRight(),
     e: () => {
       Boomerang.position = Hero.position + 1;
+      sound.play(
+        '/Users/mariia/Desktop/phase-1/week3/core-async-boomerang/src/sounds/just-like-magic.wav'
+      );
     },
   };
   keypress(process.stdin);
